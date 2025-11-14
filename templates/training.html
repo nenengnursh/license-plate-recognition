@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--=============== FAVICON ===============-->
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static',
+      filename='img/favicon.png') }}"
+      type="image/x-icon"
+    />
+
+    <!--=============== REMIXICONS ===============-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+
+    <!--=============== CSS ===============-->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles-training.css') }}"
+    />
+
+    <title>5200411216 | LIPCHARE</title>
+  </head>
+  <body>
+    <!--=============== HEADER ===============-->
+    <header class="header">
+      <nav class="nav container">
+        <div class="nav__data">
+          <a href="{{ url_for('home') }}" class="nav__logo">
+            <i class="ri-apps-line"></i> LIPCHARE
+          </a>
+
+          <div class="nav__toggle" id="nav-toggle">
+            <i class="ri-menu-line nav__burger"></i>
+            <i class="ri-close-line nav__close"></i>
+          </div>
+        </div>
+
+        <!--=============== NAV MENU ===============-->
+        <div class="nav__menu" id="nav-menu">
+          <ul class="nav__list">
+            <li><a href="{{ url_for('home') }}" class="nav__link">Home</a></li>
+
+            <li>
+              <a href="{{ url_for('training') }}" class="nav__link">Training</a>
+            </li>
+
+            <li>
+              <a href="{{ url_for('testing') }}" class="nav__link">Testing</a>
+            </li>
+
+            <li>
+              <a href="{{ url_for('dataset') }}" class="nav__link">Dataset</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!--==================== MAIN ====================-->
+    <main class="main">
+      <h1>Training</h1>
+      <section class="training">
+        <div class="dataset-grid">
+          <form
+            action="{{ ('training') }}"
+            method="post"
+            enctype="multipart/form-data"
+          >
+            <div class="upload-card">
+              <label for="input-image" class="btn-label-image">
+                Select File
+              </label>
+              <p id="filename-image">No file selected</p>
+              <div class="input-file">
+                <input
+                  type="file"
+                  name="input-image"
+                  id="input-image"
+                  accept=".yaml"
+                  class="btn-input"
+                  onchange="updateFileNameAndShowDatatrainGrid()"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- <h3 >Sample data training</h3> -->
+        <div id="jumlah-gambar" class="jumlah-gambar">
+          <p id="sample" class="sample">
+            Total citra pelatihan: {{ total_train_images }}
+          </p>
+        </div>
+        <div class="datatrain-grid">
+          {% for image in train_images %}
+          <img
+            id="gambar"
+            src="{{ url_for('static', filename='images/train/' + image) }}"
+            alt="{{ image }}"
+            class="data-train"
+          />
+          {% endfor %}
+        </div>
+
+        <div class="training-grid">
+          <form
+            action="{{ ('training') }}"
+            method="post"
+            enctype="multipart/form-data"
+          >
+            <div class="set-parameter">
+              <div class="set-param">
+                <h3>Setting Parameter</h3>
+                <ul>
+                  <li>
+                    <p>Epochs</p>
+                    <input
+                      type="number"
+                      name="epochs"
+                      class="epochs"
+                      min="1"
+                      max="100"
+                      step="1"
+                      autocomplete="on"
+                    />
+                  </li>
+                  <li>
+                    <p>Learning Rate</p>
+                    <input
+                      type="number"
+                      name="learning_rate"
+                      class="learning-rate"
+                      min="0.001"
+                      max="1"
+                      step="0.001"
+                      autocomplete="on"
+                    />
+                  </li>
+                  <li>
+                    <p>Momentum</p>
+                    <input
+                      type="number"
+                      name="momentum"
+                      class="momentum"
+                      min="0.1"
+                      max="1"
+                      step="0.001"
+                      autocomplete="on"
+                    />
+                  </li>
+                  <li>
+                    <p>Optimizer</p>
+                    <select id="optimizer" name="optimizer" class="optimizer">
+                      <option value="auto">Auto</option>
+                      <option value="SGD">SGD</option>
+                      <option value="Adam">Adam</option>
+                      <option value="Adamax">Adamax</option>
+                      <option value="AdamW">AdamW</option>
+                      <option value="NAdam">NAdam</option>
+                      <option value="RAdam">RAdam</option>
+                      <option value="RMSProp">RMSProp</option>
+                    </select>
+                  </li>
+                  <li>
+                    <p>Resume</p>
+                    <select id="resume" name="resume" class="resume">
+                      <option value="False">False</option>
+                      <option value="True">True</option>
+                    </select>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <a href="{{ url_for('training') }}"
+              ><button
+                id="submit"
+                class="submit"
+                type="submit"
+                onclick="progressDisplay()"
+              >
+                Training
+              </button></a
+            >
+          </form>
+        </div>
+      </section>
+    </main>
+    <!--==================== FOOTER ====================-->
+    <footer>
+      <span class="footer-copy">
+        Copyright &#169; 5200411216 Neneng Nur Sholihah. All rights reserved.
+      </span>
+    </footer>
+    <!--=============== MAIN JS ===============-->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+</html>

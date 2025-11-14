@@ -1,0 +1,11 @@
+path: E:/TUGAS/PAAI/data
+train: images/train
+val: images/valid
+
+# Classes
+names:
+  0: plat hitam motor
+  1: plat putih motor
+  2: plat hitam mobil
+  3: plat putih mobil
+  4: plat istimewa

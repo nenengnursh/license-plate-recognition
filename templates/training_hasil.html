@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--=============== FAVICON ===============-->
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static',
+      filename='img/favicon.png') }}"
+      type="image/x-icon"
+    />
+
+    <!--=============== REMIXICONS ===============-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+
+    <!--=============== CSS ===============-->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles-testing-hasil.css') }}"
+    />
+
+    <title>5200411216 | LIPCHARE</title>
+  </head>
+  <body>
+    <!--=============== HEADER ===============-->
+    <header class="header">
+      <nav class="nav container">
+        <div class="nav__data">
+          <a href="{{ url_for('home') }}" class="nav__logo">
+            <i class="ri-apps-line"></i> LIPCHARE
+          </a>
+
+          <div class="nav__toggle" id="nav-toggle">
+            <i class="ri-menu-line nav__burger"></i>
+            <i class="ri-close-line nav__close"></i>
+          </div>
+        </div>
+
+        <!--=============== NAV MENU ===============-->
+        <div class="nav__menu" id="nav-menu">
+          <ul class="nav__list">
+            <li><a href="{{ url_for('home') }}" class="nav__link">Home</a></li>
+
+            <li>
+              <a href="{{ url_for('training') }}" class="nav__link">Training</a>
+            </li>
+
+            <li>
+              <a href="{{ url_for('testing') }}" class="nav__link">Testing</a>
+            </li>
+
+            <li>
+              <a href="{{ url_for('dataset') }}" class="nav__link">Dataset</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!--==================== MAIN ====================-->
+    <main class="main">
+      <h1>Hasil Pelatihan</h1>
+      <div class="testing-menu">
+        <ul class="testing-list-1">
+          <li class="upload-image">
+            <h2>F1 Confidence Curve</h2>
+            <img src="{{ f1 }}" alt="F1 Confidence Curve" />
+          </li>
+          <li class="upload-image">
+            <h2>Precision Confidence Curve</h2>
+            <img src="{{ precision }}" alt="Precision Confidence Curve" />
+          </li>
+          <li class="upload-image">
+            <h2>Recall Confidence Curve</h2>
+            <img src="{{ recall }}" alt="Recall Confidence Curve" />
+          </li>
+        </ul>
+        <ul class="testing-list">
+          <li class="upload-image">
+            <h2>Confusion Matrix</h2>
+            <img src="{{ confusion_matrix }}" alt="Confusion Matrix" />
+          </li>
+          <li class="upload-image">
+            <h2>Loss Graph</h2>
+            <img src="{{ results }}" alt="Loss Graph" />
+          </li>
+        </ul>
+      </div>
+    </main>
+    <!--==================== FOOTER ====================-->
+    <footer>
+      <span class="footer-copy">
+        Copyright &#169; 5200411216 Neneng Nur Sholihah. All rights reserved.
+      </span>
+    </footer>
+    <!--=============== MAIN JS ===============-->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+</html>

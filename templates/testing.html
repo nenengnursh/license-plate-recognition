@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--=============== FAVICON ===============-->
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static',
+      filename='img/favicon.png') }}"
+      type="image/x-icon"
+    />
+
+    <!--=============== REMIXICONS ===============-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+
+    <!--=============== CSS ===============-->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles-testing.css') }}"
+    />
+
+    <title>5200411216 | LIPCHARE</title>
+  </head>
+  <body>
+    <!--=============== HEADER ===============-->
+    <header class="header">
+      <nav class="nav container">
+        <div class="nav__data">
+          <a href="{{ url_for('home') }}" class="nav__logo">
+            <i class="ri-apps-line"></i> LIPCHARE
+          </a>
+
+          <div class="nav__toggle" id="nav-toggle">
+            <i class="ri-menu-line nav__burger"></i>
+            <i class="ri-close-line nav__close"></i>
+          </div>
+        </div>
+
+        <!--=============== NAV MENU ===============-->
+        <div class="nav__menu" id="nav-menu">
+          <ul class="nav__list">
+            <li><a href="{{ url_for('home') }}" class="nav__link">Home</a></li>
+
+            <li>
+              <a href="{{ url_for('training') }}" class="nav__link">Training</a>
+            </li>
+
+            <li>
+              <a href="{{ url_for('testing') }}" class="nav__link">Testing</a>
+            </li>
+
+            <li>
+              <a href="{{ url_for('dataset') }}" class="nav__link">Dataset</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!--==================== MAIN ====================-->
+    <main class="main">
+      <h1>Testing</h1>
+      <form
+        action="{{ ('testing') }}"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <div class="testing-menu">
+          <ul class="testing-list">
+            <li class="upload-image">
+              <h2>Upload Image</h2>
+              <label for="input-image" class="btn-label-image">
+                Select Image
+              </label>
+              <p id="filename-image">No image selected</p>
+              <input
+                type="file"
+                name="input-image"
+                id="input-image"
+                accept=".jpg"
+                class="btn-input"
+                onchange="updateFileNameAndShowImage()"
+              />
+            </li>
+          </ul>
+          <ul>
+            <img id="gambar" src="" class="gambar" />
+            <script>
+              var inputImage = document.getElementById("input-image");
+              var gambar = document.getElementById("gambar");
+
+              inputImage.addEventListener("change", function () {
+                if (inputImage.files.length > 0) {
+                  var file = inputImage.files[0];
+                  var reader = new FileReader();
+
+                  reader.onload = function (e) {
+                    gambar.src = e.target.result;
+                  };
+
+                  reader.readAsDataURL(file);
+                }
+              });
+            </script>
+          </ul>
+          <a href="{{ url_for('testing') }}"
+            ><button id="submit" class="submit" type="submit">
+              Testing
+            </button></a
+          >
+        </div>
+      </form>
+
+      <form
+        action="{{ ('testing') }}"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <div class="testing-menu">
+          <ul class="testing-list">
+            <li class="upload-folder">
+              <h2>Upload Folder</h2>
+              <label for="input-folder" class="btn-label-folder">
+                Select Folder
+              </label>
+              <p id="filename-folder">No folder selected</p>
+              <input
+                type="file"
+                name="input-folder"
+                id="input-folder"
+                accept="folder"
+                class="btn-input"
+                onchange="updateFolderName()"
+                multiple
+                webkitdirectory
+                multiple
+              />
+            </li>
+          </ul>
+          <ul>
+            <img id="gambar" src="" class="gambar" />
+          </ul>
+          <a href="{{ url_for('testing') }}"
+            ><button id="submit" class="submit" type="submit">
+              Testing
+            </button></a
+          >
+        </div>
+      </form>
+    </main>
+    <!--==================== FOOTER ====================-->
+    <footer>
+      <span class="footer-copy">
+        Copyright &#169;5200411216 Neneng Nur Sholihah. All rights reserved.
+      </span>
+    </footer>
+    <!--=============== MAIN JS ===============-->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+</html>
