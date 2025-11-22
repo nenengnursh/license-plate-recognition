@@ -3,16 +3,12 @@
 ## 📌 Overview
 This project is a **license plate recognition system** focused specifically on Indonesian vehicle plates. It uses YOLO models to detect license plates from images, then applies OCR to extract the characters. The application currently supports **image input only** and does **not support live camera processing yet**.
 
----
-
 ## 🔥 Key Features
 - Detects **Indonesian vehicle license plates**
 - OCR extraction for Indonesian-style plate text
 - Image-based detection (no camera input yet)
 - Flask-based web interface
 - Customizable configuration via `config.yaml`
-
----
 
 ## 🧰 Tech Stack
 - Python 3.x
@@ -21,8 +17,6 @@ This project is a **license plate recognition system** focused specifically on I
 - Flask
 - EasyOCR / alternative OCR engine
 - HTML, CSS, JS
-
----
 
 ## 🔍 Current Limitations
 - No real-time camera support
